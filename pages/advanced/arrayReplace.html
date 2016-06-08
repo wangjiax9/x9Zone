@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>数组特定值替换</title>
+		<!--
+        	数组A  是1,2,3,4,5,6,7,8,9,10
+			数组B  是5,7
+			我想生成数组C  0,0,0,0,5,0,7,0,0,0
+			即替换掉A中不属于B中的项
+        -->
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+//		var a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+//		var b = [5,7];
+		var a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 3, 4, 5, 6, 7, 5, 4, 4, 3, 3, 4, 5,];
+		var b = [5, 7, 9, 4, 2];
+		function th(){
+//			var reg = new RegExp("[^,^"+b.join("^")+"]+","gi");
+			var reg = /[^,^5^7^9^4^2]+/gi;
+			var c = a.join(",").replace(reg,"0").split(",");
+		}
+		console.time("code");
+		th();
+		console.timeEnd("code");
+//		console.log(c);
+
+	</script>
+</html>

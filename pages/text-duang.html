@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head >
+    <meta charset="UTF-8">
+    <link href="../css/bootstrap3.3.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <title></title>
+</head>
+<style>
+	.t1{
+		-webkit-mask: -webkit-linear-gradient(top,rgba(0,0,0,1),rgba(0,0,0,0.1));
+	}
+	.t2{
+		width:337px;
+		font-weight: bold;
+		letter-spacing: 20px;;
+		-webkit-text-stroke: 2px #269ABC;
+		-webkit-box-reflect: below 1px -webkit-gradient(linear,0 30%,0 100%,from(transparent),color-stop(0, transparent),to(#000));
+		-webkit-animation: spinY linear 1s 3;
+	}
+	@-webkit-keyframes spinY{
+		0%{transform: rotateY(0deg);}
+		100%{transform: rotateY(360deg);}
+	}
+</style>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="t1">是文字的蒙版特效</h1>
+			</div>
+			<div class="col-lg-12" style="margin-top:20px	">
+				<h1 class="t2">文字也有边框</h1>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script src="../js/jquery-1.9.1.min.js" type="application/javascript"></script>
+<script src="../js/bootstrap3.3.min.js" type="application/javascript"></script>
+</html>

@@ -1,0 +1,95 @@
+
+.animation(@name:anima,@duration:1s,@timing:linear,@count:infinite,@delay:0s,@direction:normal){
+    -webkit-animation:@arguments;
+    -moz-animation: @arguments;
+    -o-animation: @arguments;
+    animation: @arguments; 
+}
+.roundedCorners(@radius:50%) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+}
+.transform-origin(@x:50%,@y:0%){
+    -webkit-transform-origin:@x @y ;
+    -moz-transform-origin: @x @y ;
+    -ms-transform-origin: @x @y ;
+    -o-transform-origin:@x @y  ;
+    transform-origin: @x @y ;
+}
+.transform(@trans){
+    -webkit-transform: @trans;
+    -moz-transform: @trans;
+    -ms-transform: @trans;
+    -o-transform: @trans;
+    transform: @trans;
+}
+.boxShadow(@x,@y,@blur,@color,@type){
+    -webkit-box-shadow: @x @y @blur @color @type;
+    -moz-box-shadow: @x @y @blur @color @type;
+    box-shadow: @x @y @blur @color @type;
+}
+.linearGradient(@start,@color1,@color2){
+    background: linear-gradient(@start,@color1,@color2);
+    background: -webkit-linear-gradient(@start,@color1,@color2);
+    background: -moz-linear-gradient(@start,@color1,@color2);
+}
+/*
+透明度 或渐变 1为不透明 0透明
+css3 rgba(110, 142, 185, .4)!important;前三个是颜色值 后一个是透明值
+用来兼容所有浏览器
+*/
+.rgba(@rgba_a:.4,@rgb_b:40){
+  filter: alpha(opacity=@rgb_b); 
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=@{rgb_b})"; 
+  opacity:@rgb_a;   
+}
+/*
+过度动画 
+id是css属性
+2s过度时间 0s是开始时间
+ease-in进入
+*/
+.tran(@t :id 2s ease-in 0s){
+  transition:@t ;
+  -moz-transition:@t ;
+  -o-transition:@t ;
+  -webkit-transition:@t ;
+}
+@width-full:100%;
+@height-full:100%;
+@default-width:100px;
+@default-height:100px;
+.turn-x-bg{
+    width: @default-width*1.9;
+    height: @default-height*3.6;
+    background: url(../../img/phone/phoneBg180x320.png);
+    margin-left: 100px;
+    transform-style: preserve-3d;
+    perspective: 250px;
+    .turn-x{
+        width: @width-full;
+        display: none;
+        position: absolute;
+        top:155px;
+        .transform-origin(100%,100%);
+        .animation(turnX, 1s ,cubic-bezier(.19,.28,.11,.92),1); 
+        >img{
+            border: none;
+            width:@default-width*1.8;    
+        }
+    }
+    .active{
+        z-index: 9;
+        display: block;
+    }
+}
+
+@-webkit-keyframes turnX{
+    0%{ 
+        .transform(rotateX(0deg)); 
+    }
+    100%{
+       .transform(rotateX(-90deg));
+    }
+}

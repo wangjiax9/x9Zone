@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>噪音</title>
+		<!--
+        	描述：来自http://codepen.io/yukulele/pen/gPOdxb
+        -->
+        <style type="text/css">
+			html,
+			body {
+			  width: 100%;
+			  height: 100%;
+			  margin: 0;
+			  padding: 0;
+			  overflow: hidden;
+			  background-color: #000;
+			}
+			#cvs {
+			  vertical-align: top;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="cvs"></canvas>
+	</body>
+	<script type="text/javascript">
+		(function() {
+		  const canvas = document.querySelector('canvas');
+		  const ctx = canvas.getContext('2d');
+		  const τ = 2 * Math.PI;
+		  const count = 2000;
+		  const init = Date.now(); 
+		  var w;
+		  var h;
+		  var m;
+		  var mx = null;
+		  var my = null;
+		  var size;	
+		  noise.seed(Math.random());
+		
+		  function place() {
+		    const now = Date.now() - init;
+		    const n = now / 10000 + Math.cos(now / 2000) * 3;
+		    const c = (Math.cos(now / 2000) / 2 -
+		      .5) / 3 + 1;
+		    ctx.clearRect(0, 0, w, h);
+		    for (var i = 0; i < count && (Date.now() - init < now + 1000 / 40); i++) {
+		      const x = Math.random();
+		      const y = Math.random();
+		      const ang = noise.perlin3((x - .5) * m / h * .75, (y - .5) * m / w * .75, n);
+		      
+		      var rot = 0;
+		      if(mx !== null){
+		        const dist = ((mx - x * w) * 2 + (my - y * h) * 2) * .5;
+		        const limit = m / 3;
+		        if(dist < limit)
+		          rot = 1 - dist / limit;
+		      }
+		      const cos = Math.cos(ang * τ);
+		      const sin = Math.sin(ang * τ);
+		      ctx.strokeStyle = `hsl(${rot*180+Math.round(ang*5+now/500)*100-now/7},100%,${ang*ang<.2?50:0}%)`;
+		      //ctx.strokeStyle = `hsl(${ang*500},100%,${ang*ang<.2?50:0}%)`;
+		      ctx.beginPath();
+		      ctx.lineWidth = c+rot**2.5*75;
+		      ctx.moveTo(x * w + cos * size, y * h + sin * size);
+		      ctx.lineTo(x * w - cos * size, y * h - sin * size);
+		      ctx.stroke();
+		    }
+		  }
+		
+		  (function loop() {
+		    requestAnimationFrame(loop);
+		    place();
+		  })();
+		})();
+	</script>
+</html>

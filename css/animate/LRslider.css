@@ -1,0 +1,99 @@
+.thumb-slide {
+  width: 700px;
+  height: 112px;
+  overflow: hidden;
+  position: relative;
+  float: left;
+}
+.thumb-slide ul {
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.thumb-slide ul li {
+  display: inline-block;
+  margin-right: 17px;
+}
+.thumb-slide ul li .thumb-link {
+  width: 200px;
+  height: 112px;
+  display: block;
+  position: relative;
+}
+.thumb-slide ul li .thumb-link img {
+  width: 100%;
+  height: 100%;
+}
+.thumb-slide ul li .thumb-title {
+  width: 190px;
+  height: 26px;
+  padding: 0 5px;
+  line-height: 26px;
+  color: #fff;
+  font-size: 16px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: linear-gradient(top, transparent, #333);
+  background: -webkit-linear-gradient(top, transparent, #333);
+  background: -moz-linear-gradient(top, transparent, #333);
+}
+.thumb-slide .page-roll {
+  width: 34px;
+  height: 112px;
+  position: absolute;
+  top: 0;
+  cursor: pointer;
+}
+.thumb-slide .page-roll:before {
+  content: "";
+  display: block;
+  width: 16px;
+  height: 16px;
+  border: 6px solid #eee;
+  position: absolute;
+  border-color: #eee transparent transparent #eee;
+}
+.thumb-slide .page-roll.pre-page {
+  left: 0;
+}
+.thumb-slide .page-roll.pre-page:before {
+  left: 11px;
+  top: 40px;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.thumb-slide .page-roll.pre-page:hover {
+  background: linear-gradient(right, transparent, #111);
+  background: -webkit-linear-gradient(right, transparent, #111);
+  background: -moz-linear-gradient(right, transparent, #111);
+}
+.thumb-slide .page-roll.next-page {
+  right: 0;
+}
+.thumb-slide .page-roll.next-page:before {
+  right: 11px;
+  top: 40px;
+  -webkit-transform: rotate(135deg);
+  -moz-transform: rotate(135deg);
+  -ms-transform: rotate(135deg);
+  -o-transform: rotate(135deg);
+  transform: rotate(135deg);
+}
+.thumb-slide .page-roll.next-page:hover {
+  background: linear-gradient(left, transparent, #111);
+  background: -webkit-linear-gradient(left, transparent, #111);
+  background: -moz-linear-gradient(left, transparent, #111);
+}
+.thumb-slide .page-roll.hide-page {
+  display: none;
+}
+/*# sourceMappingURL=LRslider.css.map */

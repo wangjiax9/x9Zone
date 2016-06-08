@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head >
+    <meta charset="UTF-8">
+    <link href="../../css/animate/turnX.css" rel="stylesheet">
+    <title>翻转X动画</title>
+    
+</head>
+<body style="text-align: center;">
+	<div class="turn-x-bg">
+		<div class="turn-x active">
+			<img src="../../img/phone/xraycatblack.png"/>
+		</div>	
+		<div class="turn-x">
+			<img src="../../img/phone/cagematchcat.png"/>
+		</div>	
+		<div class="turn-x">
+			<img src="../../img/phone/darkside.png"/>
+		</div>	
+		<div class="turn-x">
+			<img src="../../img/phone/firedog.png"/>
+		</div>	
+	</div>
+	<button id="pageUp" onclick="pageUp()">上一页</button>	
+	<button id="pageDown" onclick="pageDown()">下一页</button>
+</body>
+<script type="text/javascript">
+		var index = 0;
+		var turns = document.querySelectorAll(".turn-x-bg>.turn-x");
+		//上一页
+		function pageUp () {
+			if (index > 0) {
+				turns[index].className = "turn-x";
+				turns[index-1].className += " active";
+				if(index > 0){
+					index--;
+				}
+			}
+		}
+		//下一页
+		function pageDown () {
+			if (index < turns.length-1) {
+				turns[index].className = "turn-x";
+				turns[index+1].className += " active";
+				if(index != turns.length-1){
+					index++;
+				}
+			}
+		}
+</script>
+</html>

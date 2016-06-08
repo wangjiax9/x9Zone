@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>input输入监听</title>
+		<!--
+			当所有输入框不为空的时候按钮才不失效
+        -->
+	</head>
+	<body>
+		<div class="ff">
+			<input type="text" />
+			<input type="text" />
+			<input type="text" />
+			<input type="text" />
+			<input type="text" />
+		</div>
+		<input type="button" name="" id="btn" value="我哦我死的" disabled="disabled"/>
+	</body>
+	<script type="text/javascript">
+	btn.setAttribute("disabled",true);
+		var inp = document.querySelectorAll("input[type='text']");
+		for (var i = 0; i < inp.length; i++) {
+			inp[i].addEventListener("input",function(){
+				validateInp();
+			});
+		}
+		function validateInp(){
+			var flag = true;
+			for (var i = 0; i < inp.length; i++) {
+				if(inp[i].value == ""){
+					flag = false;
+					break;
+				}
+			}
+			flag && (btn.disabled = false); 
+			!flag && (btn.disabled = true);
+		}
+	</script>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head >
+    <meta charset="UTF-8">
+    <link href="../../css/animate/animate.css" rel="stylesheet">
+    <title></title>
+</head>
+<style type="text/css">
+	.sjx{
+		border-color: transparent #7d90a3 transparent transparent;
+		border-style:solid;
+		border-width:15px;
+		height:0px;
+		width:0px;
+		position: relative;
+		left: -30px;
+		top: 65px;
+	}
+</style>
+<body>
+	<div style="transform: rotateY(20deg);transform-style: preserve-3d;">
+		<div class="turn-bg" draggable="true"></div>
+	</div>
+	<div class="sjx"></div>
+</body>
+
+<script src="../../js/jquery-1.9.1.min.js" type="application/javascript"></script>
+<script type="text/javascript">
+	$(function(){
+		var $turn = $(".turn-bg");
+		var size = 10;
+		var stepDeg = 360/size;
+		var width = 200;
+		var height = 100;
+		//旋转中心点
+		var cChord =(height/2) / Math.tan((stepDeg/2)*0.017);
+		console.log(cChord);
+		var centerPoint = parseInt(cChord);
+		for (var i = 0; i < size; i++) {
+			var red = parseInt(Math.random()*100);
+			var green = parseInt(Math.random()*100);
+			var blue = parseInt(Math.random()*100);
+			var $t = $("<div class='turn' id='t"+i+"'>").html(i).appendTo($turn);
+			$t.css({
+				width : width,
+				height : height,
+				opacity: 0.7,
+				background : "rgb("+red+","+green+","+blue+")",
+				transformOrigin : "50% 50%",
+				transform : "rotateX("+stepDeg*i+"deg) translateZ("+centerPoint+"px)"
+			});
+		}
+		//添加事件让每个卡片都以相同度数旋转即可达到滚轮滚动效果
+		
+	});
+</script>
+</html>

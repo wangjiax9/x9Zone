@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>获取最高版本</title>
+		<!--
+        	腾讯的面试题 ，获取最高版本，如果最高版本有多个，那么需要一起返回
+        -->
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//版本号长度不定，顺序不定
+//		var tag = [
+//		"1.0",
+//		  "1.0.0",
+//		  "2.2.10.2",
+//		  "1.0.2",
+//		  "2.0",
+//		  "2.2.1.0",
+//		  "2.2.10.1",
+//		  "2.2.10.2",
+//		  "2.0.0.2"
+//		];
+		var tag = [
+			"1.0.1",
+			"1.0.1"
+		]
+		//重复值的版本号，只存最大的
+		var repeatVal = [];
+		//获得最新版本号
+		function getLatestVersion (preVal,curVal,index,array) {
+			if(preVal == "") return curVal;
+			if(preVal== curVal){//如果上一个值跟当前值相等
+				if(preVal != repeatVal[0]){
+					repeatVal = [];
+				}
+				repeatVal.push(preVal);
+				if(index == array.length-1){
+					repeatVal.push(curVal);
+					return repeatVal;
+				}
+				return curVal;
+			}else{
+				var preArr = preVal.split(".");
+				var curArr = curVal.split(".");
+				//谁的数组长度小就遍历谁，依次比较
+				var size = preArr.length > curArr.length ? curArr.length : preArr.length;
+				for (var i = 0; i < size; i++) { //谁大返回谁
+					if(curArr[i] > preArr[i]){
+						return curVal;
+					}else if(curArr[i] < preArr[i]){
+						if(index == array.length-1){
+							repeatVal.push(preVal);
+							return repeatVal;
+						}else{
+							return preVal;
+						}
+					} 
+				}
+			}
+			
+		}
+//		var result = tag.reduce(getLatestVersion,"");
+//		console.log(result);
+		
+		var max = tag[0];
+		var arr = [];
+		tag.forEach(function(val){
+		    if((val + '.').replace(/([\w]+)/g, '00000$1').replace(/([\w]{5}\.)/g, '--$1').replace(/(0*--)/g,'') > (max + '.').replace(/([\w]+)/g, '00000$1').replace(/([\w]{5}\.)/g, '--$1').replace(/(0*--)/g,'')){
+		        max = val;
+		        arr = [val];
+		    }else if( val == max ){
+		        arr.push(val);
+		    }
+		});
+		console.log(arr);
+	</script>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head >
+    <meta charset="UTF-8">
+    <link href="../css/bootstrap3.3.min.css" rel="stylesheet">
+    <link href="../css/jquery-ui-1.9.0.custom.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <title></title>
+</head>
+<style>
+	ul{list-style: none;}
+	.slide-bg{width:500px;height:200px;overflow: hidden; position: relative;margin:auto;background: #222222;}
+	.s1,.s2,.s3{width:500px;height:200px;position: absolute;left:0;top:0;text-align: right;font-size: 40px;}
+	.s1{background: #D2322D;}
+	.s2{background: #A94442;}
+	.s3{background: #3071A9;}
+	.curItem{z-index:98}
+	.active{z-index: 99;}
+</style>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<ul class="slide-bg">
+					<li class="s1 ">s1</li>
+					<li class="s2">s2</li>
+					<li class="s3 active">s3</li>
+				</ul>
+			</div>
+			<div class="col-lg-12 text-center">
+				<button id="nextS">下一个 </button>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script src="../js/jquery-1.9.1.min.js" type="application/javascript"></script>
+<script src="../js/jquery-ui-1.9.1.custom.min.js" type="application/javascript"></script>
+<script src="../js/bootstrap3.3.min.js" type="application/javascript"></script>
+<script type="application/javascript">
+	$(function(){
+		$("#nextS").click(function(){
+			m($(".slide-bg .active"));
+		});
+//		var autoPlay = setTimeout(function(){
+//			m($(".slide-bg .active"));
+//			autoPlay;
+//		},2000);;
+		autoPlay();
+	});
+	function autoPlay(){
+		setTimeout(function(){
+			m($(".slide-bg .active"));
+			autoPlay();
+		},2000);
+	}
+	function m(obj){
+		obj.addClass("curItem").removeClass("active");
+		if(obj.index() == $(".slide-bg li:last").index()){//如果是最后一个
+			$(".slide-bg li:first").stop()
+			.animate({left:"-=500px",opacity:"1"},0,function(){$(this).addClass("active");})
+			.animate({left:"+=500px",opacity:"1"},500,function(){obj.removeClass("curItem");});
+		}else{
+			obj.next().stop()
+			.animate({left:"-=500px",opacity:"1"},0,function(){$(this).addClass("active");})
+			.animate({left:"+=500px",opacity:"1"},500,function(){obj.removeClass("curItem");});
+		}
+	}
+</script>
+</html>
+
+
+
+

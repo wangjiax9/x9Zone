@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head >
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="http://demo.youku.com/play/css/play_V5.css"/>
+    <title>横向滑块</title>
+</head>
+<style type="text/css">
+	ul{list-style: none;}
+	.left_panel_recommend{
+		width: 880px;
+		height:190px;
+		border:1px solid #C0C0C0;
+		position: relative;
+		overflow: hidden;
+		margin:auto;
+	}
+	.y-slide{
+		width: 880px;
+		height:190px;
+		border:1px solid #C0C0C0;
+		position: relative;
+		overflow: hidden;
+		padding: 0;
+		margin: 0 -10px;
+	}
+	.yk-row{
+		width: 880px;
+		height:190px;
+		position: relative;
+		overflow: hidden;
+		padding: 0;
+		margin: 0 -10px;
+	}
+	.yk-slide-btnprev{
+		position: absolute;
+		left: 0;
+		top: 50%;
+	}
+	.yk-slide-btnnext{
+		position: absolute;
+		right: 0;
+		top: 50%;
+	}
+	.left_panel_recommend .yk-col4{
+		width: 200px;
+		height:198px;
+		float: left;
+		padding: 0;
+		margin: 0 10px;
+		background: #337FE5;
+	}
+</style>
+<body>
+	<div class="left_panel_recommend">
+		<div class="yk-slide" id="Islide" style="height:190px">
+			<div class="yk-row yk-slide-pages">
+				<div class="yk-col4"></div>
+				<div class="yk-col4"></div>
+				<div class="yk-col4"></div>
+				<div class="yk-col4"></div>
+				<div class="yk-col4"></div>
+				<div class="yk-col4"></div>
+				<div class="yk-col4"></div>
+				<div class="yk-col4"></div>
+				<div class="yk-col4"></div>
+				<div class="yk-col4"></div>
+			</div>
+			<div class="yk-slide-btnprev" style="width:75px"><i></i></div>
+			<div class="yk-slide-btnnext"><i></i></div>
+		</div>
+	</div>
+</body>
+
+<script src="../../js/jquery-1.9.1.min.js" type="application/javascript"></script>
+<script src="http://static.youku.com/v1.0.1086/cms/js/hslider.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var slider86995 = new hslider("Islide",{pager:true});
+</script>
+</html>

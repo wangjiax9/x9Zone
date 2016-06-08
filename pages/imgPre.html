@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>图片即时预览</title>
+	</head>
+	<script type="application/javascript">
+		function showFile(t){
+			f = t.files[0];	//f = $(this).prop("files")[0];
+			if(f.type.match(/^image\//)){
+				(function(f){
+					setTimeout(function(){
+						var img = document.getElementById("img");
+						var reader = new FileReader();  
+						reader.onload = function(e){ img.src = e.target.result; };
+						reader.readAsDataURL(f);
+					},50);
+				})(f);
+			}else{
+				console.log("你选择的文件不是图片");
+				t.value="";
+			}
+		}
+</script>
+	<body>
+		<img width="200" height="200" src="" id="img" />
+		<input type="file" id="f" onchange="showFile(this)" />
+		<div id="">
+			<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAC9ElEQVR42u2YX2iPURjHf2Nm/oW1P/6Ui6WFKC7c0HazpHCxmhSpLZLcaPK3oVgrf8pqkfyJCykXa6XEMIQ2fy7kX8iMUSv7RSjC74fN99Tz1tPpnPec8573HcVTn6v3eZ7zfd/znHOe96RS/5CNB2P/BiE5YD7YBa6CXjDA6AevQRuoB3MGS9hosAm8lATZ8ASsBcOT+mK14J1BxCfw0eDzBlTFKa4InA8ZsAMsB8UsJheUgZXgFPisiDtNM+JlYpAejbAsWGOZZySoA31SjodgYlRxU0FaI04sguoIOceB41KuLpol52l9ETKtBz1npoZmIMh3D4xwWRAXQ8R9ByUx1HaVJPKYbeAqwyq8pIkrADvBZjDKcqzVUu5Km2JOGwTu08R2MJ8Why95Rtorh4Q511lsuNsUcWJb+cl8+hwEltD+GcQuDXN+biGwSRPbwnyaHeuxgcVe0znNtTyybmji88AysMg0TQqbAH5Q/l9gssqp3lKgSFCawHF6mY1Ro3K44HDwn01A4BbTlvPKsTvZHrPABSz3TZVDJkILdTiOA5+slOXtkR/mRxAX8BbsAeVgksuRJVkhy/lefjjMQ6BO9Akww0FgMYtPqxy+xSxygDbvBjrfbVq7IK5b5fA0AYG8Vk22mPm3qxxaExRoPMJgu00n0fqEBT4zTPVt08uUeQoQhb0DNIIvGp/ZFvWXof9rpd3xEDiP5anW+NRqxj3CfFrD6mBFRHHioB+q2dM46xRjTpM664owgbkeq5nXzQbLhSJeqtOm1eJWGVFghnrCNup4VH+CU6Sx9ku/sTNtd/VDCaxi+etstOjUtZYnLXtfstQQB2V0QNG+5bge3uIa7X4M4vrp0ihFU9gpPW+nn7VIJm4CrnuI+0BbzixwkrX1fEvJ9+3TRKezV1P4usUiuplb4Ch4oPHZGmVaw0zU0N0YpvwKmJ7kzepCKuqsg6ivdN1WPpjXwAVUX0209z2mVl3cvj4C5+gWYgkYk/pvf9B+AzTGlHbEgFWhAAAAAElFTkSuQmCC"/>
+		</div>
+		
+	</body>
+</html>

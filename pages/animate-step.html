@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head >
+    <meta charset="UTF-8">
+    <link href="../css/bootstrap3.3.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <title>jquery animate step的用法</title>
+    
+</head>
+<style type="text/css">
+	.menu{
+		width: 200px;
+		height: 200px;
+		border-radius: 50%;
+		border-width:20px;
+		border-style: solid;
+		border-color: #999999;
+		-webkit-border-top-color: #333 #827;
+		margin: 100px auto 50px;
+	}
+</style>
+<body style="text-align: center;">
+	<div class="menu">
+		我转我转我转
+	</div>
+	<div id="">
+		<button id="go" class="btn btn-primary">GO</button>
+		<button id="stop" class="btn btn-danger">STOP</button>
+	</div>
+	<script src="../js/jquery-1.9.1.min.js" type="application/javascript"></script>
+<script type="text/javascript">
+	$(function(){
+		var timer = null ;
+		var count = 0;
+		function spin(s,endDeg){
+			$(".menu").stop().animate({textindent: 0},
+				{
+					duration:2000,
+					step:function(now,fx){
+						s = now;
+				        fx.start = s;
+				        fx.end = endDeg;        
+						$(this).css('-webkit-transform','rotate('+now+'deg)');
+					}
+				});
+		}
+		function fspin(){
+			$(".menu").stop().animate({textindent: 0},
+				{
+					duration:2000,
+					step:function(now,fx){
+						s = now;
+				        fx.start = s;
+				        fx.end = 0;        
+						$(this).css('-webkit-transform','rotate('+now+'deg)');
+					}
+				});
+		}
+		$("#go").click(function(){
+			timer = setInterval(function(){
+				var endDeg = -360*(count+1);
+				var s = 360*count;
+				spin(s,endDeg);
+				count++;
+			},1000);
+		});
+		$("#stop").click(function(){
+			$(".menu").stop();
+			clearInterval(timer);
+			fspin();
+			console.log(s);
+		});
+	})
+</script>
+</body>
+
+
+</html>

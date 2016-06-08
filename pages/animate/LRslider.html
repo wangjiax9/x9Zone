@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head >
+    <meta charset="UTF-8">
+    <link href="../../css/animate/LRslider.css" rel="stylesheet">
+    <title>左右缩略图滑块</title>
+    <!--
+		左右翻页滑动
+	-->
+</head>
+<body>
+	<div class="thumb-slide" id="jxtzThumbSlide">
+	<ul>
+		<li>
+			<a class="thumb-link" href="http://v.youku.com/v_show/id_XMTI2MjU2ODg2OA==.html"><img src="http://r4.ykimg.com/0510000057111E1A67BC3D459A07CBCF"><span class="thumb-title">黄渤为"求生"强抱王迅</span></a>
+		</li>
+		<li>
+			<a class="thumb-link" href="http://v.youku.com/v_show/id_XMTI2NzYwMDU4OA==.html"><img src="http://r3.ykimg.com/0510000057111E6E67BC3D4597048849"><span class="thumb-title">张艺兴地铁卖唱猛飙泪</span></a>
+		</li>
+		<li>
+			<a class="thumb-link" href="http://v.youku.com/v_show/id_XMTI3Mjc4NjkwOA==.html"><img src="http://r1.ykimg.com/0510000057111EB367BC3D29650CCE71"><span class="thumb-title">黄渤被封史上最丑许文强</span></a>
+		</li>
+		<li>
+			<a class="thumb-link" href="http://v.youku.com/v_show/id_XMTI4MzM2MDIwOA==.html"><img src="http://r2.ykimg.com/0510000057111F4467BC3D29D70EF786"><span class="thumb-title">颜王竹竿爆菊虐哭王迅</span></a>
+		</li>
+		<li>
+			<a class="thumb-link" href="http://v.youku.com/v_show/id_XMTUzMTg0NTE0MA==.html"><img src="http://r2.ykimg.com/051000005712235D67BC3D687A09183E"><span class="thumb-title">小样乳酸盐 轻运动更快乐
+</span></a>
+		</li>
+		<li>
+			<a class="thumb-link" href="http://v.youku.com/v_show/id_XMTI4ODY4MzU2NA==.html"><img src="http://r4.ykimg.com/0510000057111F9367BC3D45AC084061"><span class="thumb-title">男人帮挑战人力拉飞机</span></a>
+		</li>
+		<li>
+			<a class="thumb-link" href="http://v.youku.com/v_show/id_XMTI5NDI3NTg3Ng==.html"><img src="http://r3.ykimg.com/0510000057111FCA67BC3D45D70EB05C"><span class="thumb-title">孙红雷搂肩强吻罗志祥</span></a>
+		</li>
+	</ul>
+	<div class="page-roll pre-page hide-page"></div>
+	<div class="page-roll next-page"></div>
+</div>
+<script src="../../js/jquery-2.1.3.min.js" type="application/javascript"></script>
+<script type="text/javascript">
+	//缩略图滑动
+	var thumbSlide = {
+		init : function(){
+			var $slide = $("#jxtzThumbSlide ul");
+			var $prePage = $("#jxtzThumbSlide .pre-page");
+			var $nextPage = $("#jxtzThumbSlide .next-page");
+			var sW = $slide.width();
+			var pageSize = 1190;
+			var totalPage = (sW/pageSize)%2 != 0 ? parseInt(sW/pageSize)+1 : (sW/pageSize);
+			var curPage = 0;
+			var lastPageSize = sW - pageSize;
+			//下一页
+			$nextPage.click(function(){
+				curPage ++;
+				if (curPage == (totalPage - 1)) {
+					$slide.animate({left:"-"+curPage*lastPageSize+"px"},1000);
+					$(this).addClass("hide-page");
+					$prePage.removeClass("hide-page");
+				}else{
+					$slide.animate({left:"-"+curPage*pageSize+"px"},1000);
+				}
+				
+			});
+			//上一页
+			$prePage.click(function(){
+				curPage --;
+				if (curPage == 0) {
+					$slide.animate({left:curPage*lastPageSize+"px"},1000);
+					$(this).addClass("hide-page");
+					$nextPage.removeClass("hide-page");
+				}else{
+					$slide.animate({left:curPage*pageSize+"px"},1000);
+				}
+				
+			});
+		}
+	}
+	thumbSlide.init();
+</script>
+</body>
+
+</html>

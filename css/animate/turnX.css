@@ -1,0 +1,48 @@
+.turn-x-bg {
+  width: 190px;
+  height: 360px;
+  background: url(../../img/phone/phoneBg180x320.png);
+  margin-left: 100px;
+  transform-style: preserve-3d;
+  perspective: 250px;
+}
+.turn-x-bg .turn-x {
+  width: 100%;
+  display: none;
+  position: absolute;
+  top: 155px;
+  -webkit-transform-origin: 100% 100%;
+  -moz-transform-origin: 100% 100%;
+  -ms-transform-origin: 100% 100%;
+  -o-transform-origin: 100% 100%;
+  transform-origin: 100% 100%;
+  -webkit-animation: turnX 1s cubic-bezier(.19, .28, .11, .92) 1 0s normal;
+  -moz-animation: turnX 1s cubic-bezier(.19, .28, .11, .92) 1 0s normal;
+  -o-animation: turnX 1s cubic-bezier(.19, .28, .11, .92) 1 0s normal;
+  animation: turnX 1s cubic-bezier(.19, .28, .11, .92) 1 0s normal;
+}
+.turn-x-bg .turn-x > img {
+  border: none;
+  width: 180px;
+}
+.turn-x-bg .active {
+  z-index: 9;
+  display: block;
+}
+@-webkit-keyframes turnX {
+  0% {
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(-60deg);
+    -ms-transform: rotateX(-60deg);
+    -o-transform: rotateX(-60deg);
+    transform: rotateX(0deg);
+  }
+  100% {
+    -webkit-transform: rotateX(-60deg);
+    -moz-transform: rotateX(0deg);
+    -ms-transform: rotateX(0deg);
+    -o-transform: rotateX(0deg);
+    transform: rotateX(-60deg);
+  }
+}
+/*# sourceMappingURL=turnX.css.map */

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>请按下列要求写出相应的 Html 和 CSS</title>
+		<meta name="Description" content="现有并列的三列布局结构，
+		从左至右依次为 A, B, C, 宽度分别为180px, 600px, 180px。
+		要求在不改变 Html 结构的情况下用CSS实现：ABC，CBA，BAC 
+		三种布局及在CBA排列下使B宽度自适应（三列总宽度100%），不能使用针对浏览器的CSS Hack."/>
+	</head>
+	<style type="text/css">
+		html,body{width:100%;height: 100%;padding: 0;margin:0}
+		.d1,.d3{position: absolute;height: 100%;}
+		.d1{left: 0;top: 0;width: 160px;background: #808080;}
+		.d2{width:auto;margin:0 160px;height: 100%;background: #3071A9;}
+		.d3{right: 0;top: 0;width: 160px;background: #003366;}
+	</style>
+	<body>
+		<div class="d1">180px</div>
+		<div class="d2">auto</div>
+		<div class="d3">180px</div>
+	</body>
+	<script type="text/javascript">
+		func = function(){
+			console.log("0000000");
+		}
+	//第二题：请说明要输出正确的myName的值要如何修改程序?并解释原因
+		foo = function(){
+		    this.myName = "Foo function.";
+		}
+		foo.prototype.sayHello = function(){
+		    console.log(this.myName);
+		}
+		foo.prototype.bar = function(){
+			var self = this;
+			//这是引用
+		    setTimeout(self.sayHello, 100);		//undefined
+		    //主要this指向问题
+		    //这是调用
+			setTimeout(this.sayHello(),300);	//Foo function.
+			//意思是将前面个this看成后面一个this去调用sayHello方法
+			setTimeout(this.sayHello.call(this),300);	//Foo function.
+			setTimeout(this.sayHello.bind(this),300);	//Foo function.
+			//this指到window了，闭包存起来就行了
+			setTimeout((function(obj){
+				return function(){
+					obj.sayHello();
+				}
+			})(this),300);	//Foo function.
+		}
+		var f = new foo;
+		f.bar();
+		
+	</script>
+</html>

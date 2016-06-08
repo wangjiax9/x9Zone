@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>数组去重</title>
+		<!--
+        	作者：18017792@qq.com
+        	时间：2015-08-06
+        	描述：当数量级上去之后，效率差距能达到10倍以上。
+        	当使用1000W长度数组时，遍历去重耗时583ms，哈希去重68ms
+        -->
+	</head>
+	<script type="text/javascript">
+		//创建一个大数组
+		function createBigArr () {
+			var arr=[];
+			for (var i = 0; i < 10000000; i++) {
+				var rand = parseInt(Math.random()*30);
+				arr.push(rand);
+			}
+			return arr;
+		}
+		var arr = createBigArr();
+		//双重遍历去重 
+		function dropRepeat (arr) {
+			var noRepeatArr=[];
+			for (var i = 0; i < arr.length-1; i++) {
+				var isSame = false;
+				for (var j = i+1; j < arr.length; j++) {
+					if(arr[i] == arr[j] && j != arr.length-1){
+						isSame = true;
+						break;
+					}
+				}
+				if (!isSame) {
+					noRepeatArr.push(arr[i]);
+				}
+			}
+			return noRepeatArr;
+		}
+		//哈希结构去重
+		function fastDistinct (arr) {
+			var arrObj = {};
+			var distinctArr=[];
+			for (var i = 0; i < arr.length; i++) {
+				if (arrObj[arr[i]] == undefined) {
+					arrObj[arr[i]] = arr[i];
+					distinctArr.push(arr[i]);
+				}else{
+					continue;
+				}
+			}
+			return distinctArr;
+		}
+		console.log("数组长度为："+arr.length);
+		var start = new Date().getTime();
+		console.log("去重后的数组："+dropRepeat(arr));
+		console.log("去重消耗时间："+(new Date().getTime()-start)+"ms");
+		var start = new Date().getTime();
+		console.time("s");
+		console.log("去重后的数组："+fastDistinct(arr));
+		console.log("去重消耗时间："+(new Date().getTime()-start)+"ms");
+		console.timeEnd("s");
+	</script>
+	<body>
+	</body>
+</html>

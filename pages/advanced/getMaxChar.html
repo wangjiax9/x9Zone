@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>得到出现次数最多的字符及次数</title>
+		<!--
+        	长度不定纯字母的字符串，找出出现次数最多的字母及次数
+        -->
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		
+		function maxNumLetter( str ){
+		    var lettersObj ={},
+		        letterNum, maxLetter, maxNumber = 0;
+		    str.replace(/[a-zA-Z]/g,function( l,index,obj ){
+		        var lNum =(lettersObj[ l ]|| 0 )+ 1;
+		              letterNum = lettersObj[ l ]=( lettersObj[ l ]|| 0 )+ 1;
+		       
+		        if( letterNum > maxNumber ){
+		              maxLetter = l;
+		              maxNumber = letterNum;
+		        }else if( letterNum === maxNumber ){
+		              ( maxLetter instanceof Array)? maxLetter.push( l ):( maxLetter =[ maxLetter, l ]);
+		        }
+		    });
+		    return "出现最多的字母："+maxLetter.toString()+",出现次数："+maxNumber;
+		}
+		var str = "fsdfjhwqklwjaawseebbewb";
+		console.log(maxNumLetter(str)); 
+	</script>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head >
+    <meta charset="UTF-8">
+    <link href="../../css/animate/animate.css" rel="stylesheet">
+    <title>滚动出现</title>
+</head>
+<style type="text/css">
+	.scro{width: 80%;height: 400px;margin:10px auto;background: #0069D6;opacity: 0; }
+</style>
+<body>
+	<div class="scro"></div>
+	<div class="scro"></div>
+	<div class="scro"></div>
+	<div class="scro"></div>
+	<div class="scro"></div>
+	<div class="scro"></div>
+	<div class="scro"></div>
+	<div class="scro"></div>
+	<div class="scro"></div>
+	<div class="scro"></div>
+	<script src="../../js/jquery-1.9.1.min.js" type="application/javascript"></script>
+	<script type="text/javascript">
+		$(function(){
+			$(document).scroll(function(){
+				var scTop = $(this).scrollTop();
+				$(".scro").each(function(){
+					if ($(this).offset().top - innerHeight < scTop) {
+						$(this).animate({"opacity":1},1000);
+					}
+				});
+			});
+		});
+	</script>
+</body>
+</html>

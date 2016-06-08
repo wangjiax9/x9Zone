@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>B按钮调用A按钮事件</title>
+		
+	</head>
+	<body>
+		<button id="btnA" onclick="console.log('I am A!')">A</button>
+		<button id="btnB">B</button>
+	</body>
+	<script src="../js/jquery-2.1.3.min.js" type="application/javascript"></script>
+	<script type="text/javascript">
+		btnB.onclick = function(){
+			btnA.click();
+		}
+	</script>
+</html>

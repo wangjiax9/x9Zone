@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head >
+    <meta charset="UTF-8">
+    <link href="../css/bootstrap3.3.min.css" rel="stylesheet">
+    <link href="../css/jquery-ui-1.9.0.custom.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <title></title>
+</head>
+<style>
+	body{
+		background-size: 100px 100px;
+		background-color: #ff0;
+		/*background-image: -webkit-gradient(linear, 0 0, 100% 0, color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.5, transparent), to(transparent));*/
+		/*background-image: -moz-linear-gradient(0deg, rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);*/
+		/*background-image: -o-linear-gradient(0deg, rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);*/
+		/*background-image:linear-gradient(45deg, rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);*/
+		/*background-image:linear-gradient(to left, red, orange,yellow,green,blue,indigo,violet);*/
+		background-image: linear-gradient(45deg, #555 25%, transparent 25%, transparent),
+                  linear-gradient(-45deg, #555 25%, transparent 25%, transparent),
+                  linear-gradient(45deg, transparent 75%, #555 75%),
+                  linear-gradient(-45deg, transparent 75%, #555 75%);
+	}
+</style>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<button class="btn btn-primary" onclick="diao()">我要调用父页面方法</button>
+			</div>
+			<form id="form1" action="" class="col-lg-12">
+				<input type="file" id="put1"/>
+				<input type="button" onclick="moveToTop()" value="移动到顶层frame"/>
+			</form>
+		</div>
+	</div>
+</body>
+<script src="../js/jquery-1.9.1.min.js" type="application/javascript"></script>
+<script src="../js/jquery-ui-1.9.1.custom.min.js" type="application/javascript"></script>
+<script src="../js/bootstrap3.3.min.js" type="application/javascript"></script>
+<script type="application/javascript">
+	$(function(){
+		
+	});
+	function diao(){
+//		parent.fun();
+		parent.f5();
+	}
+	function childFun(){
+		console.log("老父，你调我了，看见了没。");
+	}
+	function moveToTop(){
+		$("#put1").appendTo(top.document.body);
+	}
+	var h;
+	$.get("child1.html",null,function(result){
+		h = $(result);
+		h.find("#put1");
+	});
+</script>
+</html>

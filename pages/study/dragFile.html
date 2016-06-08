@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>拖拽文件到文件夹</title>
+	</head>
+	<style type="text/css">
+		.folder{width: 200px;height: 100px;background: #E4C652;}
+		.file{width: 100px;height: 50px;background: #C1E2B3;margin-top: 10px;}
+		.file:active{cursor:move}
+	</style>
+	<body>
+		<div class="folder" id="folder" draggable="true">
+			我是文件夹
+		</div>
+		<div class="file" id="file" draggable="true">我是文件</div>
+	</body>
+	<script type="text/javascript">
+		var fo = document.getElementById("folder");
+		var f = document.getElementById("file");
+		var srcEle = null;
+		f.ondragstart = function(ev){
+			console.log("start drag");
+			ev.dataTransfer.setData("text",ev.target.id);
+			srcEle = ev.target;
+		}
+		f.ondragend = function(ev){
+			console.log("drag end");
+			ev.dataTransfer.clearData("text");
+		}
+		fo.ondragover = function(ev){
+			ev.preventDefault();
+			srcEle.offsetTop = ev.clientY;
+			console.log(ev.clientY);
+			srcEle.offsetLeft = ev.clientX;
+		}
+		fo.ondrop = function(ev){
+			var dataId = ev.dataTransfer.getData("text");
+			ev.target.appendChild(document.getElementById(dataId));
+		}
+	</script>
+</html>

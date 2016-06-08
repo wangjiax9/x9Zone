@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head >
+    <meta charset="UTF-8">
+    <link href="../css/bootstrap3.3.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <title></title>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<textarea id="editor_id" name="content" style="width:700px;height:300px;">
+					&lt;strong&gt;HTML内容&lt;/strong&gt;
+				</textarea>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script src="../js/jquery-1.9.1.min.js" type="application/javascript"></script>
+<script src="../js/bootstrap3.3.min.js" type="application/javascript"></script>
+<script src="../js/kindeditor/kindeditor-min.js" type="application/javascript"></script>
+<script src="../js/kindeditor/zh_CN.js" type="application/javascript"></script>
+<script type="text/javascript">
+	var editor;
+        KindEditor.ready(function(K) {
+                editor = K.create('#editor_id', {
+				themeType : 'qq',
+				items : [
+					'bold','italic','underline','fontname','fontsize','forecolor','hilitecolor','plug-align','plug-order','plug-indent','link'
+				]
+			});
+        });
+</script>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>for和while哪个更快</title>
+		<!--
+        	作者：18017792@qq.com
+        	时间：2015-08-06
+        	描述：测试for循环和while循环哪个更快
+        	当数组在大约85000以下时，while比for，当大于这个值时for比while快
+        -->
+	</head>
+	<script type="text/javascript">
+		//创建一个大数组
+		function createBigArr () {
+			var arr=[];
+			for (var i = 0; i < 10000000;i++) {
+				var rand = parseInt(Math.random()*30);
+				arr.push(rand);
+			}
+			return arr;
+		}
+		var arr = createBigArr();
+		function funFor (arr) {
+			for (var i = 0; i < arr.length; i++) {
+				var item = arr[i];
+			}
+		}
+		function funWhile (arr) {
+			var length = arr.length; 
+			while (length--){
+				var item = arr[length];
+			}
+		}
+		console.log("数组长度为："+arr.length);
+		var start = new Date().getTime();
+		funFor (arr);
+		console.log("For循环消耗时间："+(new Date().getTime()-start)+"ms");
+		var start = new Date().getTime();
+		funWhile(arr);
+		console.log("While循环消耗时间："+(new Date().getTime()-start)+"ms");
+	</script>
+	<body>
+	</body>
+</html>

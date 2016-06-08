@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>事件冒泡</title>
+	</head>
+	<body>
+		<div id="d1">
+			<div id="d11">fffffffff</div>
+		</div>
+		<script type="text/javascript">
+			//事件冒泡
+			var bd = document.body;
+			var d1 = document.getElementById("d1");
+			var d11 = document.getElementById("d11");
+			bd.addEventListener("click",function(){console.log("I'm body")});
+			d1.addEventListener("click",function(e){console.log("I'm d1");e.stopPropagation();});
+			d11.addEventListener("click",function(e){console.log("I'm d11");});
+//			var name = "trigkit4";   
+//		    　　var segmentFault = {  
+//		    　　　　name : "My SF",  
+//		    　　　　getNameFunc : function(){  
+//		    			 console.log(this);
+//		    　　　　　　return function(){
+//		    				console.log(this);
+//		    　　　　　　　　return this.name;  
+//		    　　　　　};   
+//		    　　　　}   
+//		    };  
+//		    console.log(segmentFault.getNameFunc()());
+//			//匿名函数里的this都是指向window对象
+//			(function(){
+//				return function(){
+//					console.log(this);
+//				};
+//			})()();
+		</script>
+	</body>
+</html>

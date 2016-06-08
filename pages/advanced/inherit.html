@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Js中的继承</title>
+	</head>
+	<script type="text/javascript">
+		var name = "outer name";
+		//组合式继承是js最常用的继承模式，即原型链+对象冒充1
+		function music(){
+			this.name = "音乐";
+			this.sing = function(singer,singName){
+				console.log(singer+"唱"+singName+"---"+this.name);
+				//当函数被调用时，它的arguments.callee对象就会指向自身
+				console.log(arguments.callee);
+				//指向调用它的函数对象
+				console.log(arguments.caller);
+			}
+		}
+		music.prototype.rhythm = function(rhy){
+			console.log(rhy+"节奏响起来"+this.name);
+		}
+		music.prototype.ring = function(){
+			//打印出的this.name居然是outer name,即this指向了window
+			setTimeout(this.rhythm,1000); 
+//			this.rhythm();
+		}
+		function popular(){
+			this.name = "流行乐";
+			this.sing = function(){
+				console.log("歌唱流行乐 ---"+this.name);
+			}
+		}
+		popular.prototype = new music();
+		function rock(){
+			music.call(this);
+			this.name = "摇滚";
+		}
+		rock.prototype = new music();
+		
+		var iloveyou = new popular();
+//		iloveyou.sing("Jay");
+		
+		var rockyou = new rock();
+		 
+		(function acaller(){
+//			rockyou.sing("汪峰","流年啊，你奈我何");
+//			rockyou.rhythm(rockyou.name);
+//			rockyou.ring();
+		})();
+		
+		
+	</script>
+	<body>
+	</body>
+</html>

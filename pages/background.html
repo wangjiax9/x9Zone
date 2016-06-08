@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head >
+    <meta charset="UTF-8">
+    <link href="../css/bootstrap3.3.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <title></title>
+</head>
+<style>
+	.stripe-bg{
+		width: 400px;
+		height:150px;
+		position: relative;
+	}
+	#img1{
+		width: 150px;
+		height: 150px;
+		-webkit-mask-image: url(../img/42.png);
+		-webkit-mask-position:20px 20px;
+		-webkit-mask-repeat: no-repeat;
+	}
+	/**边缘锯齿效果*/
+	.rightC{	
+		position: absolute;
+		left:100px;
+		top:0;
+		width: 300px;
+		height: 150px;
+		background-size:100% 10px ;
+		background-image: 
+		linear-gradient(45deg, rgba(255, 255, 255, 0) 10%, black 10%, #000),
+		linear-gradient(-45deg, transparent, black 90%, rgba(0, 0, 0, 0) 90%);
+	}
+	
+	.trapezoid{
+		width:200px;
+		height: 40px;
+		background: #000;
+		background-image: 
+		linear-gradient(45deg, #fff 10%, #fff 10%, transparent),
+		linear-gradient(45deg, transparent, #fff 90%, #fff 90%);
+	}
+</style>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="stripe-bg">
+					<div class="leftC">
+						<img id="img1" src="../img/img03.jpg"/>
+					</div>
+					<div class="rightC"></div>
+				</div>
+			</div>
+			<div class="col-lg-12 " style="margin-top:120px	">
+				<div class="trapezoid"> </div>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script src="../js/jquery-1.9.1.min.js" type="application/javascript"></script>
+<script src="../js/bootstrap3.3.min.js" type="application/javascript"></script>
+</html>

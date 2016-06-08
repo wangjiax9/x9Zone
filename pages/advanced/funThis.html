@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>this指针</title>
+	</head>
+	<script type="text/javascript">
+		var name = "globle name";
+		var foo = {
+			name : "this is a foo",
+			getFooName : function(){
+				return this.name;
+			}
+		}
+		var f = foo.getFooName;
+		console.log(f());
+		console.log(foo.getFooName());
+	</script>
+	<body>
+	</body>
+</html>

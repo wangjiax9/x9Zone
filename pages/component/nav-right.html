@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head >
+    <meta charset="UTF-8">
+    <title>右侧推出式导航菜单</title>
+</head>
+<style>
+	html,body,iframe,ul,img{
+		margin: 0;
+		padding: 0;
+		border: 0;
+		outline: 0;
+		vertical-align: baseline;
+	}
+	html,body{height: 100%;}
+	body{color:#333333;font:12px "Microsoft YaHei"; background: #EFEFEF;}
+	.nav-ul{
+		list-style: none;
+		float:right;
+		right: 0;
+		width: 46px;
+		height: 100%;
+		position: relative;
+		z-index:10;
+		border-left: 1px solid #ccc;
+		background-color: #fafafa;
+		background-size: 3px 3px;
+		background-image: 
+			linear-gradient(45deg, #F0D9FA 25%, transparent 25%, transparent), 
+			linear-gradient(-45deg, #F0D9FA 25%, transparent 25%, transparent), 
+			linear-gradient(45deg, transparent 75%, #F0D9FA 75%), 
+			linear-gradient(-45deg, transparent 75%, #F0D9FA 75%);
+	}
+	.nav-ul li{
+		cursor: pointer;
+		padding: 5px 10px;
+		border-bottom: 1px inset #aaa;
+	}
+	.nav-ul li:hover{
+		background: #F0D9FA;
+	}
+	.nav-ul li[class*='active']{
+		background: #F0D9FA;
+	}
+	.nav-panel{
+		width: 205px;
+		height: 100%;
+		position: absolute;
+		right: -165px;
+		top: 0;
+		z-index:9;
+		background: #fff;
+		box-shadow:  -2px 0px 5px #aaa;
+	}
+</style>
+<body>
+	<ul class="nav-ul">
+		<li>课时<br>内容</li>
+		<li>相关<br>内容</li>
+		<li>课程<br>大纲</li>
+	</ul>
+	<div class="nav-panel" >
+		<div class="title">本课时内容</div>
+		</div>
+	</div>
+	<div class="nav-panel">
+		<div class="title">相关内容</div>
+		</div>
+	</div>
+	<div class="nav-panel">
+		<div class="title">课程目录</div>
+	</div>
+</body>
+<script src="../../js/jquery-1.9.1.min.js" type="application/javascript"></script>
+<script type="text/javascript">
+	$(function(){
+		$(".nav-ul li").each(function(){
+			//课堂右侧导航单击事件，切换内容面板
+			$(this).click(function(){
+				var panel = $(".nav-panel").eq($(this).index());
+				if(panel.attr("class").indexOf("active") == -1){
+					$(".nav-panel[class*='active']").css("right","-165px").removeClass("active");
+					panel.animate({right:"41px"},300).addClass("active");
+					$(this).parent().find("[class*='active']").removeClass("active");
+					$(this).addClass("active");
+				}else{
+					panel.animate({right:"-165px"},300).removeClass("active");
+					$(this).removeClass("active");
+				}
+			});
+		});
+	});
+</script>
+</html>

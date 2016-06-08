@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head >
+    <meta charset="UTF-8">
+    <link href="../../css/animate/animate.css" rel="stylesheet">
+    <title></title>
+</head>
+<body>
+	<div class="multilayer-bg" id="multilayer-bg">
+	</div>
+</body>
+
+<script src="../../js/jquery-1.9.1.min.js" type="application/javascript"></script>
+<script type="text/javascript">
+		
+	$(function(){
+		var $mb = $(".multilayer-bg");
+		var size = 10;	//总大小
+		var colSize = 4;	//每行多少列
+		for (var i = 0; i < size; i++) {
+			var curCol = i%colSize;	//当前列
+			var curRow = parseInt(i/colSize);	//当前行
+			var red = parseInt(Math.random()*100);
+			var green = parseInt(Math.random()*100);
+			var blue = parseInt(Math.random()*100);
+			console.log("rgb("+red+","+green+","+blue+")");
+			var $m = $("<div class='layer' id='m"+i+"'>").appendTo($mb);
+			
+			$m.addClass("layer").css({
+				background : "rgb("+red+","+green+","+blue+")",
+				left:($m.width()+20)*curCol+"px",
+				top:($m.height()+20)*curRow+"px"
+			});
+		}
+		$mb.find(".layer").on({
+			mouseover: function(){
+//				event.stopPropagation(); 
+				$(".top-layer").addClass("dark-layer").removeClass("top-layer");
+				$(this).addClass("top-layer").removeClass("dark-layer");
+			},
+			mouseout : function(){
+//				event.stopPropagation(); 
+				$(".top-layer").addClass("dark-layer").removeClass("top-layer");
+			}
+		});
+	});
+</script>
+</html>

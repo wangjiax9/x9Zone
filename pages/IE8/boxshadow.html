@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>IE8的盒子阴影问题</title>
+		<style type="text/css">
+			body{text-align: center;}
+			.dd{
+				width: 200px;
+				height: 200px;
+				margin:100px auto;
+				background: #fff;
+				border:1px solid #D0E9C6;
+				-webkit-box-shadow:  0 0 9px #d1d1d1;
+				-moz-box-shadow:  0 0 9px #d1d1d1;
+				box-shadow:  0 0 9px #d1d1d1;
+				-ms-filter:"progid:DXImageTransform.Microsoft.Shadow(Strength=9,Direction=0, Color='#d1d1d1') progid:DXImageTransform.Microsoft.Shadow(Strength=9,Direction=90, Color='#d1d1d1') progid:DXImageTransform.Microsoft.Shadow(Strength=9,Direction=180, Color='#d1d1d1') progid:DXImageTransform.Microsoft.Shadow(Strength=9,Direction=270, Color='#d1d1d1')";
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div class="dd">
+			
+		</div>
+	</body>
+</html>

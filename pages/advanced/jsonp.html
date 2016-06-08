@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script type="text/javascript">
+		function getJson (callBack){
+			var _this = this;
+			var _script = document.createElement("script");
+			_script.type = "text/javascript";
+			_script.src = 'https://www.baidu.com?callback=' + callBack;
+			document.getElementsByTagName("head")[0].appendChild(_script);
+		}
+		function fun(){
+			console.log("sss");
+		}
+		getJson("fun");
+	</script>
+	<body>
+	asdsadas
+	</body>
+	
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head >
+    <meta charset="UTF-8">
+    <link href="../../css/animate/animate.css" rel="stylesheet">
+    <title></title>
+</head>
+<style type="text/css">
+	.d{
+		width: 50px;
+		height: 20px;
+		color: #ffffff;
+		background: #000066;
+		display: none;
+	}
+</style>
+<body>
+	<button onclick="move()">动起来</button>
+	<div class="d" >我会动</div>
+</body>
+
+<script src="../../js/jquery-1.9.1.min.js" type="application/javascript"></script>
+<script type="text/javascript">
+	function move(){
+		if($(".d").text()=="我会动"){
+			$(".d").text("动起来");
+		}else{
+			$(".d").text("我会动");
+		}
+		$(".d").stop(true,true).fadeIn(500).delay(1000).fadeOut(500);
+	}
+</script>
+</html>
