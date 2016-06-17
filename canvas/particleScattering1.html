@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">  
-        <title>图片粒子化聚拢</title>
+        <title>图片粒子化聚散</title>
         <style type="text/css">
             html,body{width: 100%;height: 100%;}
             body{
@@ -22,7 +22,7 @@
     <body>
    		<button id="julong">聚拢</button>
    		<button id="sankai">散开</button>
-   		<input type="text" name="text" id="text" value="艹屮艸" placeholder="输入要粒子化的内容"/>
+   		<input type="text" name="text" id="text" value="雷神" placeholder="输入要粒子化的内容"/>
         <canvas id="cvs"></canvas>
         <script type="text/javascript">
 			var cvs = document.getElementById("cvs");
@@ -37,7 +37,12 @@
 			
 			//聚拢
 			function gather(){
-				ctx.clearRect(0,0,cw,ch);
+				ctx.save();
+				ctx.globalCompositeOperation = "destination-out";
+				ctx.globalAlpha = "0.1";
+				ctx.fillRect(0,0,cw,ch);
+				ctx.restore();
+//				ctx.clearRect(0,0,cw,ch);
 				particales.forEach(function(particale){
 					if(Math.abs(particale.ox - particale.x) < 0.1 && Math.abs(particale.oy - particale.y) < 0.1 && Math.abs(particale.oz - particale.z) < 0.1){
 						particale.x = particale.ox;
@@ -58,7 +63,12 @@
 			}
 			//散开
 			function scatter(){
-				ctx.clearRect(0,0,cw,ch);
+				ctx.save();
+				ctx.globalCompositeOperation = "destination-out";
+				ctx.globalAlpha = "0.1";
+				ctx.fillRect(0,0,cw,ch);
+				ctx.restore();
+//				ctx.clearRect(0,0,cw,ch);
 				particales.forEach(function(particale){
 					if(Math.abs(particale.dx - particale.x) < 0.1 && Math.abs(particale.dy - particale.y) < 0.1 && Math.abs(particale.dz - particale.z) < 0.1){
 						particale.x = particale.dx;
@@ -80,7 +90,7 @@
 			function drawText(text){
 				ctx.clearRect(0,0,cw,ch);
 	             ctx.save()
-	             ctx.font = "100px 微软雅黑 bold";
+	             ctx.font = "50px 微软雅黑 bold";
 	             ctx.fillStyle = "rgba(168,168,168,1)";
 	             ctx.textAlign = "center";
 	             ctx.textBaseline = "middle";
@@ -89,8 +99,8 @@
 	         }
 			function buildData(imageData) {
 				var data = imageData.data;
-				for (var x = 0; x < imageData.width; x += 2) {
-					for (var y = 0; y < imageData.height; y += 2) {
+				for (var x = 0; x < imageData.width; x += 1) {
+					for (var y = 0; y < imageData.height; y += 1) {
 						var i = 4 * (imageData.width * y + x);
 						if (data[i + 3] > 128) {
 							var r = data[i];
@@ -103,7 +113,7 @@
 								b : b,
 								a : a
 							}
-							var particale = new Particale(x, y, 0, color, 2);
+							var particale = new Particale(x, y, 0, color, 1);
 							particale.init();
 							particales.push(particale);
 						}
