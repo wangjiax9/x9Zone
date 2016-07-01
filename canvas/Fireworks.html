@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body {
+				background: black;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas"></canvas>
+	</body>
+	<script type="text/javascript">
+		'use strict';
+
+		var rn = function rn(min, max) {
+			return Math.random() * (max - min) + min;
+		};
+		var ctx = canvas.getContext('2d');
+		var _window = window;
+		var w = _window.innerWidth;
+		var h = _window.innerHeight;
+		
+		var t = 1;
+		var arr = [];
+		var cn = 150;
+		var rad = 250;
+		
+		canvas.width = w;
+		canvas.height = h;
+		
+		while (~ ~ cn--) {
+			var angle = rn(0, 359);
+		
+			arr = [].concat(arr, [{
+				color: 'hsla(' + (rn(0, 1) > .5 ? ~ ~rn(0, 20) : ~ ~rn(180, 200)) + ',100%,60%,1)',
+				distortion: rn(0, 10),
+				tmod: rn(5, 15),
+				size: rn(1, 5),
+				speed: rn(1, 5) / 10000,
+				angle: angle,
+				lastPos: {
+					x: w / 2,
+					y: h / 2
+				}
+			}]);
+		}
+		
+		var draw = function draw() {
+			request = requestAnimationFrame(function () {
+				return draw();
+			});
+			t++;
+		
+			ctx.globalCompositeOperation = 'source-over';
+			ctx.fillStyle = 'rgba(0,0,0,.1)';
+			ctx.fillRect(0, 0, w, h);
+		
+			var crad = rad * Math.sin(t / 100);
+		
+			ctx.globalCompositeOperation = 'lighter';
+			arr.forEach(function (el) {
+				ctx.strokeStyle = el.color;
+				ctx.lineWidth = el.size;
+				ctx.beginPath();
+		
+				var lastPos = el.angle - el.speed;
+				var x = w / 2 + (crad + el.distortion * Math.sin(t / el.tmod)) * Math.cos(el.angle * 180 / Math.PI);
+				var y = h / 2 + (crad + el.distortion * Math.sin(t / el.tmod)) * Math.sin(el.angle * 180 / Math.PI);
+		
+				ctx.moveTo(el.lastPos.x, el.lastPos.y);
+				ctx.lineTo(x, y);
+		
+				el.lastPos = { x: x, y: y };
+				el.angle = (el.angle + el.speed) % 359;
+				ctx.stroke();
+			});
+		};
+		
+		var resize = function resize() {
+			canvas.width = w = window.innerWidth;
+			canvas.height = h = window.innerHeight;
+		};
+		
+		var request = requestAnimationFrame(function () {
+			return draw();
+		});
+		window.addEventListener('resize', function () {
+			return resize();
+		});
+	</script>
+</html>

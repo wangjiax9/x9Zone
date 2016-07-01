@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">  
+		<title>流星虚化尾巴</title>
+		<!--
+			globalAlpha和globalCompositeOperation的配合使用
+        -->
+		<style type="text/css">
+			html,body{width: 100%;height: 100%;}
+            body{
+                background: #000;
+                overflow: hidden;
+                margin: 0;
+            }
+		</style>
+	</head>
+	<body>
+		<canvas id="cvs"></canvas>
+		<script type="text/javascript">
+			var cvs = document.getElementById("cvs");
+			var ctx = cvs.getContext("2d");
+			var cw = cvs.width = document.body.clientWidth;
+            var ch = cvs.height = document.body.clientHeight; 
+            var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+            var dots = [];
+            var speedRange = 5;
+            
+            function getDot(){
+            	for (var i = 0; i < 200; i++) {
+	            	var dot = {
+		            	x : Math.random()*cw,
+		            	y : Math.random()*ch,
+//		            	color : "hsl("+parseInt(Math.random()*220)+",70%,70%)",
+						color : "#6deb5c",
+		            	radius : 2+Math.random()*20,
+		            	directX : true,
+		            	directY : true
+		            }
+	            	dots.push(dot);
+	            }
+            }
+            getDot();
+            function alpha(){
+            	ctx.save();
+            	ctx.globalCompositeOperation = "destination-out";
+            	ctx.globalAlpha = "0.1";
+            	ctx.fillStyle = "#000000";
+            	ctx.fillRect(0,0,cw,ch);
+            	ctx.restore();
+            }
+            function move(){
+            	alpha();
+            	for (var i = 0; i < dots.length; i++) {
+            		var star = dots[i];
+	            	if(star.x < 0){
+	            		star.directX = true;
+	            	}else if(star.x > cw){
+	            		star.directX = false;
+	            	}
+	            	if(star.directX){
+	            		star.x = star.x + Math.random()*speedRange;
+	            	}else{
+	            		star.x = star.x - Math.random()*speedRange;
+	            	}
+	            	if(star.y < 0){
+	            		star.directY = true;
+	            	}else if(star.y > ch){
+	            		star.directY = false;
+	            	}
+	            	if(star.directY){
+		            	star.y = star.y + Math.random()*speedRange;
+	            	}else{
+	            		star.y = star.y - Math.random()*speedRange;
+	            	}
+	            	ctx.save();
+	            	ctx.beginPath();
+	            	ctx.arc(star.x, star.y, star.radius,0,Math.PI*2,false);
+	            	ctx.fillStyle = star.color;
+	            	ctx.fill();
+	            	ctx.closePath();
+	            	ctx.restore();
+            	}
+            	requestAnimationFrame(move);
+            }
+            requestAnimationFrame(move);
+		</script>
+	</body>
+</html>
