@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>shape-outside</title>
+		<!--
+			不规则形状环绕文字
+        	 shape-outside 属性只能被应用于浮动元素，并且只能应用于块级元素。如果需要在非块级元素上使用这些属性，必须先把元素声明为块级。
+        	 参考：http://www.cnblogs.com/powertoolsteam/p/css-create-irregular-shapes.html
+        -->
+		<style type="text/css">
+			.content{
+				width:500px;
+			}
+			.shape-l{
+				width: 300px;
+			    height: 100px;
+			    float: left;
+			    shape-outside: polygon(0 0, 20% 0, 40% 100%,0 100%);
+			}
+			.shape-r{
+				width: 200px;
+			    height: 100px;
+			    float: right;
+			    shape-outside: polygon(20% 0, 100% 0,100% 100%,0 100%);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content">
+			<div class="shape-l"></div>
+			<div class="shape-r"></div>
+			<div>勇士等级达到167级以上的玩家还将继续获得不朽宝藏III，帮助他们达成勇士令状成就，所以赶快在2016年国际邀请赛总决赛前升级勇士令状，充实自己的宝库。所有等级物品的销售额中25%将直接进入大赛的总奖金，使其超越去年的纪录，$18 429 613，成为电子竞技历史上最高的大赛奖金。</div>
+		</div>
+</body>
+</html>

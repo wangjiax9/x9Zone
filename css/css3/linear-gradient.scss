@@ -1,0 +1,27 @@
+$c1: darken(white, 5%);
+$c2: transparent;
+@mixin gradient($d1, $d2, $t, $o) {
+    $o1: $o;
+    $o2: 100% - $o;
+    $p: $c1 $o1, $c2 $o1, $c2 $o2, $c1 $o2;
+    background-position: center;
+    background-size: 100px 100px;
+    background-image: 
+//      linear-gradient(#{$d1 + 0 + $t}deg, $p), 
+//      linear-gradient(#{$d1 + 90 + $t}deg, $p), 
+        linear-gradient(#{$d2 + 0 + $t}deg, $p), 
+        linear-gradient(#{$d2 + 90 + $t}deg, $p);
+}
+
+
+.bg{
+    height: 200px;
+    border-top: 1px solid darken(white, 20%);
+    box-shadow: inset 0 1px 3px rgba(black, 0.1);  
+}
+.bg1{@include gradient( 0,  0, 22.5, 15%)}
+.bg2 { @include gradient(10, 55, 22.5, 25%) }
+.bg3 { @include gradient( 5, 10,    0, 10%) }
+.bg4 { @include gradient( 0, 45,   -5,  5%) }
+.bg5 { @include gradient( 0,  0,   45, 25%) }
+.bg6 { @include gradient( 0,  0,    0,  1%) }

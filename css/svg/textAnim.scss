@@ -1,0 +1,53 @@
+@mixin animation($anima...){
+    -webkit-animation:$anima;
+    -moz-animation: $anima;
+    -o-animation: $anima;
+    animation: $anima;
+}
+html,body,ul,img{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+}
+header{
+    width:calc(100vw);
+    height:calc(100vh);
+    background: url(../../img/10.jpg) no-repeat center;
+//  @include animation(various 1s linear infinite);
+    #linesvg{
+        path{
+            stroke:#fff;
+            stroke-width:3px;
+            fill:none;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+        }
+        text{
+            stroke:#fff;
+            stroke-width:2px;
+            font-size:20px;
+            font-family: "microsoft yahei";
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
+            @include animation(dash 2s  ease-in alternate infinite ); 
+        }
+    }
+}
+@-webkit-keyframes dash{
+    100%{
+        stroke-dashoffset: 0;
+    }
+}
+@-webkit-keyframes various{
+   @for $i from 0 to 20{
+       $curfreme: ($i * 5) * 1%;
+       #{$curfreme}{
+           -webkit-filter: sepia($curfreme);
+           -webkit-filter: grayscale($curfreme);
+           -webkit-filter: blur(($i * 1px)/4);
+       }
+   }
+}
+

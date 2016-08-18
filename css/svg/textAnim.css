@@ -1,0 +1,29 @@
+html, body, ul, img { margin: 0; padding: 0; border: 0; outline: 0; vertical-align: baseline; }
+
+header { width: calc(100vw); height: calc(100vh); background: url(../../img/10.jpg) no-repeat center; }
+header #linesvg path { stroke: #fff; stroke-width: 3px; fill: none; stroke-dasharray: 1000; stroke-dashoffset: 1000; }
+header #linesvg text { stroke: #fff; stroke-width: 2px; font-size: 20px; font-family: "microsoft yahei"; stroke-dasharray: 200; stroke-dashoffset: 200; -webkit-animation: dash 2s ease-in alternate infinite; -moz-animation: dash 2s ease-in alternate infinite; -o-animation: dash 2s ease-in alternate infinite; animation: dash 2s ease-in alternate infinite; }
+
+@-webkit-keyframes dash { 100% { stroke-dashoffset: 0; } }
+@-webkit-keyframes various { 0% { -webkit-filter: sepia(0%); -webkit-filter: grayscale(0%); -webkit-filter: blur(0px); }
+  5% { -webkit-filter: sepia(5%); -webkit-filter: grayscale(5%); -webkit-filter: blur(0.25px); }
+  10% { -webkit-filter: sepia(10%); -webkit-filter: grayscale(10%); -webkit-filter: blur(0.5px); }
+  15% { -webkit-filter: sepia(15%); -webkit-filter: grayscale(15%); -webkit-filter: blur(0.75px); }
+  20% { -webkit-filter: sepia(20%); -webkit-filter: grayscale(20%); -webkit-filter: blur(1px); }
+  25% { -webkit-filter: sepia(25%); -webkit-filter: grayscale(25%); -webkit-filter: blur(1.25px); }
+  30% { -webkit-filter: sepia(30%); -webkit-filter: grayscale(30%); -webkit-filter: blur(1.5px); }
+  35% { -webkit-filter: sepia(35%); -webkit-filter: grayscale(35%); -webkit-filter: blur(1.75px); }
+  40% { -webkit-filter: sepia(40%); -webkit-filter: grayscale(40%); -webkit-filter: blur(2px); }
+  45% { -webkit-filter: sepia(45%); -webkit-filter: grayscale(45%); -webkit-filter: blur(2.25px); }
+  50% { -webkit-filter: sepia(50%); -webkit-filter: grayscale(50%); -webkit-filter: blur(2.5px); }
+  55% { -webkit-filter: sepia(55%); -webkit-filter: grayscale(55%); -webkit-filter: blur(2.75px); }
+  60% { -webkit-filter: sepia(60%); -webkit-filter: grayscale(60%); -webkit-filter: blur(3px); }
+  65% { -webkit-filter: sepia(65%); -webkit-filter: grayscale(65%); -webkit-filter: blur(3.25px); }
+  70% { -webkit-filter: sepia(70%); -webkit-filter: grayscale(70%); -webkit-filter: blur(3.5px); }
+  75% { -webkit-filter: sepia(75%); -webkit-filter: grayscale(75%); -webkit-filter: blur(3.75px); }
+  80% { -webkit-filter: sepia(80%); -webkit-filter: grayscale(80%); -webkit-filter: blur(4px); }
+  85% { -webkit-filter: sepia(85%); -webkit-filter: grayscale(85%); -webkit-filter: blur(4.25px); }
+  90% { -webkit-filter: sepia(90%); -webkit-filter: grayscale(90%); -webkit-filter: blur(4.5px); }
+  95% { -webkit-filter: sepia(95%); -webkit-filter: grayscale(95%); -webkit-filter: blur(4.75px); } }
+
+/*# sourceMappingURL=textAnim.css.map */

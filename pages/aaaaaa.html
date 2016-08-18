@@ -60,12 +60,11 @@
 	document.body.appendChild(aaa);
 	var img = new Image();
 	img.src = "http://g3.ykimg.com/05160000570B5F1367BC3C7F2D08A4D6";
-//	img.onload = function(){
-//		console.log(img.width);
+	img.onload = function(){
+		console.log(img.width);
 //		img.style.width = "200px";
 //		img.style.height = "200px";
-		aaa.appendChild(img);
-//	}
+	}
 //	var telemeta = document.createElement('meta');
 //	telemeta.setAttribute("name","format-detection");
 //	telemeta.setAttribute("content","telephone=no");
@@ -83,5 +82,7 @@
 		obj = {};
 	}
 	console.log(result);
+	
+	
 	</script>
 </html>
