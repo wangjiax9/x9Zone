@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#snake{
+				width:50px;
+				height:50px;
+				position:absolute;
+				left: 100px;
+				top:100px;
+				background: #0000FF;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="snake"></div>
+		<script type="text/javascript">
+			//每一步的移动距离
+			var step = 50;
+			//监听键盘按下事件
+			document.onkeydown = function(e){
+				//获得蛇头
+				var snake = document.querySelector("#snake");
+				//获得键盘码
+				var code = e.keyCode;
+				if(code == "39"){ //向右移动
+					//改变蛇头的左偏移量
+					snake.style.left = snake.offsetLeft + step + "px";
+				}
+				if(code == "37"){//向左移动
+					snake.style.left = snake.offsetLeft - step + "px";
+				}
+				if(code == "38"){//向上移动
+					snake.style.top = snake.offsetTop - step + "px";
+				}
+				if(code == "40"){//向下移动
+					snake.style.top = snake.offsetTop + step + "px";
+				}
+			}
+		</script>
+	</body>
+</html>
