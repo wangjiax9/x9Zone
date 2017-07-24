@@ -225,11 +225,11 @@ body{
 	width: 30px;
 	height: 30px;
 	margin-top: 20px;
-	border-color: #398439 transparent;
-	border-width: 5px 5px 0 1px ;
-	border-style: dotted;
+	border-color: transparent #fff #fff transparent;
+	border-width: 2px 1px 5px 3px;
+	border-style: solid;
 	border-radius: 50%;
-	-webkit-animation: load360 2s ease-in infinite;
+	-webkit-animation: load360 1s ease-in-out infinite;
 }
 @-webkit-keyframes load360{
 	to{
