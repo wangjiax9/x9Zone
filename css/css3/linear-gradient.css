@@ -1,15 +1,51 @@
-.bg { height: 200px; border-top: 1px solid #cccccc; box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); }
+.bg {
+  height: 200px;
+  border-top: 1px solid #cccccc;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
 
-.bg1 { background-position: center; background-size: 100px 100px; background-image: linear-gradient(22.5deg, #f2f2f2 15%, transparent 15%, transparent 85%, #f2f2f2 85%), linear-gradient(112.5deg, #f2f2f2 15%, transparent 15%, transparent 85%, #f2f2f2 85%); }
+.bg1 {
+  background-position: center;
+  background-size: 100px 100px;
+  background-image: linear-gradient(22.5deg, #f2f2f2 15%, transparent 15%, transparent 85%, #f2f2f2 85%), linear-gradient(112.5deg, #f2f2f2 15%, transparent 15%, transparent 85%, #f2f2f2 85%);
+  -webkit-animation: changebg 3s linear infinite;
+}
 
-.bg2 { background-position: center; background-size: 100px 100px; background-image: linear-gradient(77.5deg, #f2f2f2 25%, transparent 25%, transparent 75%, #f2f2f2 75%), linear-gradient(167.5deg, #f2f2f2 25%, transparent 25%, transparent 75%, #f2f2f2 75%); }
+.bg2 {
+  background-position: center;
+  background-size: 100px 100px;
+  background-image: linear-gradient(77.5deg, #f2f2f2 25%, transparent 25%, transparent 75%, #f2f2f2 75%), linear-gradient(167.5deg, #f2f2f2 25%, transparent 25%, transparent 75%, #f2f2f2 75%);
+}
 
-.bg3 { background-position: center; background-size: 100px 100px; background-image: linear-gradient(10deg, #f2f2f2 10%, transparent 10%, transparent 90%, #f2f2f2 90%), linear-gradient(100deg, #f2f2f2 10%, transparent 10%, transparent 90%, #f2f2f2 90%); }
+.bg3 {
+  background-position: center;
+  background-size: 100px 100px;
+  background-image: linear-gradient(10deg, #f2f2f2 10%, transparent 10%, transparent 90%, #f2f2f2 90%), linear-gradient(100deg, #f2f2f2 10%, transparent 10%, transparent 90%, #f2f2f2 90%);
+}
 
-.bg4 { background-position: center; background-size: 100px 100px; background-image: linear-gradient(40deg, #f2f2f2 5%, transparent 5%, transparent 95%, #f2f2f2 95%), linear-gradient(130deg, #f2f2f2 5%, transparent 5%, transparent 95%, #f2f2f2 95%); }
+.bg4 {
+  background-position: center;
+  background-size: 100px 100px;
+  background-image: linear-gradient(40deg, #f2f2f2 5%, transparent 5%, transparent 95%, #f2f2f2 95%), linear-gradient(130deg, #f2f2f2 5%, transparent 5%, transparent 95%, #f2f2f2 95%);
+}
 
-.bg5 { background-position: center; background-size: 100px 100px; background-image: linear-gradient(45deg, #f2f2f2 25%, transparent 25%, transparent 75%, #f2f2f2 75%), linear-gradient(135deg, #f2f2f2 25%, transparent 25%, transparent 75%, #f2f2f2 75%); }
+.bg5 {
+  background-position: center;
+  background-size: 100px 100px;
+  background-image: linear-gradient(45deg, #f2f2f2 25%, transparent 25%, transparent 75%, #f2f2f2 75%), linear-gradient(135deg, #f2f2f2 25%, transparent 25%, transparent 75%, #f2f2f2 75%);
+}
 
-.bg6 { background-position: center; background-size: 100px 100px; background-image: linear-gradient(0deg, #f2f2f2 1%, transparent 1%, transparent 99%, #f2f2f2 99%), linear-gradient(90deg, #f2f2f2 1%, transparent 1%, transparent 99%, #f2f2f2 99%); }
+.bg6 {
+  background-position: center;
+  background-size: 100px 100px;
+  background-image: linear-gradient(0deg, #f2f2f2 1%, transparent 1%, transparent 99%, #f2f2f2 99%), linear-gradient(90deg, #f2f2f2 1%, transparent 1%, transparent 99%, #f2f2f2 99%);
+}
 
-/*# sourceMappingURL=linear-gradient.css.map */
+@-webkit-keyframes changebg {
+  0% {
+    background-size: 100px 100px;
+  }
+  100% {
+    background-size: 50px 50px;
+  }
+}

@@ -19,9 +19,21 @@ $c2: transparent;
     border-top: 1px solid darken(white, 20%);
     box-shadow: inset 0 1px 3px rgba(black, 0.1);  
 }
-.bg1{@include gradient( 0,  0, 22.5, 15%)}
+.bg1{
+    @include gradient( 0,  0, 22.5, 15%);
+    -webkit-animation: changebg 3s linear infinite;
+}
 .bg2 { @include gradient(10, 55, 22.5, 25%) }
 .bg3 { @include gradient( 5, 10,    0, 10%) }
 .bg4 { @include gradient( 0, 45,   -5,  5%) }
 .bg5 { @include gradient( 0,  0,   45, 25%) }
 .bg6 { @include gradient( 0,  0,    0,  1%) }
+
+@-webkit-keyframes changebg{
+    0%{
+        background-size: 100px 100px;
+        }
+    100%{
+        background-size: 50px 50px;
+    }
+}
