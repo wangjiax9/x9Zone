@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Object.defineProperty()</title>
+		<!--
+        	描述：Object.defineProperty() 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象
+        	https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
+        -->
+	</head>
+	<body>
+		<script type="text/javascript">
+			var obj = {}
+			var descriptor = Object.create(null)
+			descriptor.value = '38'
+			Object.defineProperty(obj, 'key', descriptor)
+			var bValue;
+			Object.defineProperty(obj, "b", {
+			  get : function(){
+			    return bValue;
+			  },
+			  set : function(newValue){
+			    bValue = newValue;
+			  },
+			  enumerable : true,
+			  configurable : true
+			});
+			obj.b = 39
+		</script>
+	</body>
+</html>
