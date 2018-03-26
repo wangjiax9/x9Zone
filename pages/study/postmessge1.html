@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>postmessage1</title>
+		<!--
+        	描述：必须是同一个页面
+        	其他窗口的一个引用，
+        	比如iframe的contentWindow属性、
+        	执行window.open返回的窗口对象、
+        	或者是命名过或数值索引的window.frames。
+        -->
+	</head>
+	<body>
+		<button id="send">发送postmessage消息</button>
+		<iframe src="postmessge2.html" width="200" height="200"></iframe>
+		<script type="text/javascript">
+			document.querySelector('#send').onclick = function(){
+				console.log('pre send message')
+				window.frames[0].postMessage('收到请回答', '*')
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>postmessage2</title>
+	</head>
+	<body>
+		<div>收到来自postmessage1的消息是什么：</div>
+		<div id="t"></div>
+		<script type="text/javascript">
+			window.addEventListener('message', function(e){
+				console.log(e.data)
+				document.querySelector('#t').innerHTML = e.data;
+			})
+		</script>
+	</body>
+</html>
