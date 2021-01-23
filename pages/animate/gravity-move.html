@@ -1,0 +1,377 @@
+<template>
+  <div class="page">
+    <img class="bg" src="~assets/images/activity/capsule-toys/temp-bg.jpeg"/>
+    <div class="top">
+      <img src="~assets/images/common/close.png" class="btn-close" @click="closePage">
+      <div class="rule">规则</div>
+      <div class="welfare FZ">福利</div>
+      <div class="notice FZ">公告</div>
+    </div>
+    <ul class="info">
+      <li>186****3322扭到了大会员季卡捂着优惠</li>
+      <li>186****3322扭到了大会员季卡捂着优惠</li>
+      <li>186****3322扭到了大会员季卡捂着优惠</li>
+      <li>186****3322扭到了大会员季卡捂着优惠</li>
+    </ul>
+    <div class="my-ticket">
+      <div class="ticket">13</div>
+      <span class="text">我的扭蛋券</span>
+    </div>
+    <div class="game">
+      <div class="container"></div>
+      <div ref="machine" class="machine">
+        <div ref="ball0" class="ball ball-0"></div>
+        <div ref="ball1" class="ball ball-1"></div>
+        <div ref="ball2" class="ball ball-2"></div>
+        <div ref="ball3" class="ball ball-3"></div>
+        <div ref="ball4" class="ball ball-4"></div>
+        <div ref="ball5" class="ball ball-5"></div>
+        <div ref="ball6" class="ball ball-6"></div>
+      </div>
+      <div class="coin">
+        投币入口
+        <div class="tip">扭蛋券</div>
+      </div>
+      <div class="start" @click="play">
+        扭一扭
+        <div class="hand">手</div>
+      </div>
+      <div class="share">分享</div>
+      <div class="exchange">兑换扭蛋券</div>
+    </div>
+  </div>
+</template>
+<script>
+import { rem2px } from '~/assets/scripts/utils'
+let $machine
+let [minX, maxX, minY, maxY] = [0, 0, 0, 0] // 边界
+let balls = []
+let speedRange = 30 // 速度范围
+const g = 1 // 重力速度
+const uy = 0.8 // 能量消减系数
+const ux = 0.85 // 能量消减系数
+let overArr = [] // 结束累计池
+let gameOver = true
+export default {
+  mounted() {
+    $machine = this.$refs.machine
+    minX = 0
+    maxX = $machine.clientWidth - rem2px(1.34)
+    minY = -$machine.clientHeight + rem2px(1.73)
+    maxY = 0
+    console.log(`${maxX}, ${minY}`)
+    this.reset()
+  },
+  methods: {
+    reset () {
+      balls = []
+      overArr = []
+      for (let i = 0; i < 7; i++) {
+        balls.push({
+          id: i,
+          el: this.$refs[`ball${i}`],
+          w: rem2px(1.34),
+          h: rem2px(1.73),
+          tx: rem2px(1.1) * i,
+          ty: 0,
+          rotate: Math.round(Math.random()*360),
+          rotateRand: Math.round(Math.random()*speedRange) + 5,
+          speedX: Math.round(Math.random()*speedRange*2) - 60,
+          speedY: -(Math.round(Math.random()*speedRange) + 30),
+          over: false,
+          a: Number((Math.random() * 0.5).toFixed(2))
+        })
+      }
+      balls.forEach(ball => {
+        ball.el.style.transform = `translate3d(${ball.tx}px, ${ball.ty}px, 0) rotate3d(0, 0, 1, ${ball.rotate}deg)`
+      })
+      console.log(balls)
+    },
+    play () {
+      // 扭扭中
+      if (!gameOver) return
+      if (overArr.length > 0) {
+        this.reset()
+      }
+      this.start()
+    },
+    start () {
+      const _this = this
+      gameOver = false
+      function animate () {
+        for (let i = 0; i < balls.length; i++) {
+          const ball = balls[i]
+          if (!ball.over) {
+            _this.move(ball)
+          } else if (!overArr.includes(i)) {
+            overArr.push(i)
+          }
+        }
+        if (overArr.length < balls.length) {
+          requestAnimationFrame(animate)
+        } else {
+          // 扭蛋结束
+          gameOver = true
+          console.log('扭蛋结束~~~')
+        }
+      }
+      animate()
+    },
+    move (ball) {
+      this.checkBound(ball)
+      ball.speedY += g
+      if (ball.rotate > 360) {
+        ball.rotate = 0
+      }
+      ball.rotateRand = ball.rotateRand > 0.1 ? ball.rotateRand - 0.05 : 0.1
+      ball.rotate += ball.rotateRand
+      ball.tx += ball.speedX
+      ball.ty += ball.speedY
+      // console.log(ball.tx, ball.ty, ball.speedX, ball.speedY)
+      ball.el.style.transform = `translate3d(${ball.tx}px, ${ball.ty}px, 0) rotate3d(0, 0, 1, ${ball.rotate}deg)`
+    },
+    checkBound (ball) {
+      if (ball.tx < minX) {
+        ball.speedX *= -1
+        ball.speedX *= ux
+        ball.speedY *= uy
+        ball.tx = minX
+      } else if (ball.tx > maxX) {
+        ball.speedX *= -1
+        ball.speedX *= ux
+        ball.speedY *= uy
+        ball.tx = maxX
+      }
+      if (ball.ty < minY) {
+        ball.speedY *= -1
+        ball.speedX *= ux
+        ball.speedY *= uy
+        ball.ty = minY
+      } else if (ball.ty > maxY) {
+        ball.speedY *= -1
+        ball.speedX *= ux
+        ball.speedY *= uy
+        ball.ty = maxY
+      }
+      if (Math.abs(ball.speedX) < 1) {
+        ball.speedX = 0
+      }
+      if (Math.abs(ball.speedY) < 1) {
+        ball.speedY = 0
+      }
+      if (ball.speedX === 0 && ball.speedY === 0 && ball.ty >= maxY) {
+        ball.over = true
+      } else if (ball.speedX < 2 && ball.speedY < 2 && ball.ty >= maxY - 10) {
+        // this.collisionCheck(ball)
+      }
+    },
+    collisionCheck (ball) {
+      for (let i = 0; i < balls.length; i++) {
+        const b = balls[i]
+        if (ball.id === b.id) continue
+        if (
+          ball.tx + ball.w > b.tx &&
+          ball.tx < b.tx + b.w &&
+          ball.ty + ball.h > b.ty &&
+          ball.ty < b.ty + b.h
+        ) {
+          console.log(`${ball.id}和${b.id}碰撞了！`)
+          ball.speedX = ball.speedX * -1 + 2 * -1
+          ball.speedY *= -1
+          // ball.speedX *= ux
+          // ball.speedY *= uy
+          // b.speedX *= -1
+          // b.speedY *= -1
+          // b.speedX *= ux
+          // b.speedY *= uy
+        }
+      }
+    },
+    closePage () {
+      this.$bugo.run('/g/close')
+    }
+  },
+}
+</script>
+<style lang="scss">
+.page {
+  width: 100%;
+  height: 100%;
+  font-size:toRem(48);
+  color:#fff;
+  text-align: center;
+  background:rgb(179,255,178);
+  .bg {
+    width: toRem(1920);
+    height: toRem(1080);
+    position: absolute;
+    left: 0;
+    top:0;
+  }
+  .top {
+    position: relative;
+    .btn-close{
+      position: absolute;
+      left: toRem(48);
+      top: toRem(48);
+    }
+    .rule {
+      width: toRem(300);
+      height: toRem(100);
+      line-height: toRem(100);
+      background: rgb(44,128,197);
+      position: absolute;
+      left: toRem(220);
+      top: toRem(36);
+    }
+    .welfare {
+      width: toRem(200);
+      height: toRem(200);
+      line-height: toRem(200);
+      border-radius: 50%;
+      background: rgb(44,128,197);
+      position: absolute;
+      top: toRem(48);
+      right: toRem(284);
+    }
+    .notice {
+      width: toRem(200);
+      height: toRem(200);
+      line-height: toRem(200);
+      border-radius: 50%;
+      background: rgb(44,128,197);
+      position: absolute;
+      top: toRem(48);
+      right: toRem(48);
+    }
+  }
+  .info {
+    width: toRem(300);
+    background: rgb(44,128,197);
+    position: absolute;
+    right: toRem(48);
+    top: toRem(300);
+    & > li{
+      font-size:toRem(30);
+      margin-bottom: toRem(20);
+    }
+  }
+  .my-ticket{
+    width: toRem(200);
+    font-size:toRem(30);
+    background: rgb(44,128,197);
+    position: absolute;
+    left: toRem(248);
+    top: toRem(400);
+    .text {
+      color:#333;
+      background:#fff;
+    }
+  }
+  .game {
+    width: toRem(1080);
+    height: toRem(600);
+    position: absolute;
+    left: 50%;
+    top:50%;
+    transform: translate3d(-50%, -50%, 0);
+    .container {
+      width: toRem(1080);
+      height: toRem(600);
+      background: url(~assets/images/activity/capsule-toys/temp-vat.png) no-repeat;
+      background-size: toRem(1080) toRem(600);
+      position: absolute;
+      left: 0;
+      top: 0;
+      animation: shrink 1s ease-in-out infinite;
+    }
+    .machine{
+      width: toRem(800);
+      height: toRem(500);
+      position: absolute;
+      left: 50%;
+      bottom:0;
+      transform: translate3d(-50%, 0, 0);
+      .ball {
+        width: toRem(134);
+        height: toRem(173);
+        background: url(~assets/images/activity/capsule-toys/temp-egg.png) no-repeat;
+        background-size: contain;
+        border-radius: 50%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+      }
+    }
+    .coin {
+      width: toRem(200);
+      height: toRem(80);
+      background: rgb(44,128,197);
+      position: absolute;
+      left: toRem(100);
+      top: toRem(625);
+      .tip{
+        width: toRem(60);
+        height: toRem(60);
+        position: absolute;
+        left: toRem(40);
+        top: toRem(-130);
+        animation: swing 2s ease-out infinite;
+      }
+    }
+    .start{
+      width: toRem(150);
+      height: toRem(150);
+      line-height: toRem(150);
+      border-radius: 50%;
+      background: rgb(44,128,197);
+      position: absolute;
+      right: toRem(100);
+      top: toRem(600);
+      .hand {
+        width: toRem(60);
+        height: toRem(60);
+        position: absolute;
+        left: toRem(40);
+        top: toRem(-130);
+        animation: swing 2s ease-out infinite;
+      }
+    }
+    .share{
+      width: toRem(200);
+      height: toRem(72);
+      background: rgb(44,128,197);
+      position: absolute;
+      right: toRem(-200);
+      top: toRem(125);
+    }
+    .exchange{
+      width: toRem(250);
+      height: toRem(72);
+      background: rgb(44,128,197);
+      position: absolute;
+      right: toRem(-250);
+      top: toRem(250);
+    }
+    
+  }
+  @keyframes swing {
+    0% {
+      transform: translateY(0);
+    }
+    70% {
+      transform: translateY(toRem(100));
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  @keyframes shrink {
+    0% { transform: translateY(0) scale(1); }
+    20% { transform: translateY(toRem(-10)) scale(0.95); }
+    40% { transform: translateY(toRem(10)) scale(1.1); }
+    70% { transform: translateY(toRem(-10)) scale(0.95); }
+    100% { transform: translateY(0) scale(1); }
+  }
+}
+</style>

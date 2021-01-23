@@ -5,8 +5,10 @@ setTimeout(() => {
   console.log('setTimeout1')
 }, 0);
 
-Promise.resolve().then(() => {
+new Promise((resolve, reject) => {
   console.log('promise1')
+  resolve()
+  console.log('promise111')
 }).then(() => {
   console.log('promise2')
 })
