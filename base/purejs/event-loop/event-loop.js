@@ -26,6 +26,7 @@ setTimeout(() => {
 console.log('script end')
 
 async function fun() {
+  console.log('exe fun')
   const res = await axios.get('https://ddl.163.com/apps')
   console.log('inner:',res)
   setTimeout(() => {
@@ -34,3 +35,4 @@ async function fun() {
   return res
 }
 fun1()
+console.log('after fun')
